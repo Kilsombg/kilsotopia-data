@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calendar.Domain
+namespace Calendar.Application.Days.Queries.GetNote
 {
-    public class Class1
+    internal class GetNote
     {
     }
 }
