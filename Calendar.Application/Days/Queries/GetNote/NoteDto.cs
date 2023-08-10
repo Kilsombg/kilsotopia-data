@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using Calendar.Domain.Entities;
+using System;
 
 namespace Calendar.Application.Days.Queries.GetNote
 {
@@ -9,5 +11,13 @@ namespace Calendar.Application.Days.Queries.GetNote
         public DateTime Date { get; set; }
 
         public string Description { get; set; }
+
+        private class Mapping : Profile
+        {
+            public Mapping()
+            {
+                CreateMap<Note, NoteDto>();
+            }
+        }
     }
 }
