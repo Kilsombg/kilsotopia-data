@@ -12,5 +12,7 @@ namespace Calendar.Infrastructure.Data
     public class ApplicaationDbContext : DbContext, IApplicationDbContext
     {
         public DbSet<Note> Notes { get; set; }
+
+        public ApplicaationDbContext(DbContextOptions<ApplicaationDbContext> options) : base(options) { }
     }
 }
