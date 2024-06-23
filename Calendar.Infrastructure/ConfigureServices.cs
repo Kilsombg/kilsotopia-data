@@ -1,5 +1,7 @@
-﻿using Calendar.Infrastructure.Data;
+﻿using Calendar.Application.Common.Interfaces;
+using Calendar.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,10 +18,14 @@ namespace Calendar.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<ApplicaationDbContext>((opt) =>
+            services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
-                opt.UseSqlServer(connectionString);
+                options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+
+                options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
             return services;
         }
