@@ -1,13 +1,20 @@
 ﻿using Calendar.Application.Days.Queries.GetNote;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalendarApi.Controllers
 {
+    [ApiController]
     public class NoteController : BaseController
     {
-        public Task<NoteDto> GetFirstNote(GetNoteQuery query)
+        public NoteController(IMediator mediator) : base(mediator)
         {
-            return Mediator.Send(query);
+        }
+
+        [HttpGet]
+        public Task<NoteDto> GetFirstNote()
+        {
+            return Mediator.Send(new GetNoteQuery());
         }
     }
 }
