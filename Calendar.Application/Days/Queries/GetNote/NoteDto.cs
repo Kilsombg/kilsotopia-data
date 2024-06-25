@@ -10,7 +10,7 @@ namespace Calendar.Application.Days.Queries.GetNote
 
         public DateTime Date { get; set; }
 
-        public string Description { get; set; }
+        public string? Notes { get; set; }
 
         private class Mapping : Profile
         {
