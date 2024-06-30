@@ -2,7 +2,7 @@
 using Calendar.Domain.Entities;
 using System;
 
-namespace Calendar.Application.Days.Queries.GetNote
+namespace Calendar.Application.Days.Queries.GetNotes
 {
     public class NoteDto
     {

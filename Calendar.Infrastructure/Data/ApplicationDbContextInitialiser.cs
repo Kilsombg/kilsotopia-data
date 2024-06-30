@@ -55,7 +55,6 @@ namespace Calendar.Infrastructure.Data
             try
             {
                 await TrySeedAsync();
-                throw new Exception();
             }
             catch (Exception ex)
             {
