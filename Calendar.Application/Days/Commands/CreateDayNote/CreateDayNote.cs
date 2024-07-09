@@ -27,9 +27,9 @@ namespace Calendar.Application.Days.Commands.CreateDayNote
         {
             Note note = new Note()
             {
-                Date = request.Date,
+                Date = request.Date.ToLocalTime(),
                 Notes = request.Notes,
-                Created = DateTime.UtcNow,
+                Created = DateTime.Now,
                 CreatedBy = "Kilsom"
             };
 
