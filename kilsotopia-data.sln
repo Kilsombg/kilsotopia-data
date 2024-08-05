@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D70768B7-6799-450E-88C5-D093D4D6BBF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6359BAE5-4C40-4FF4-9028-F8A3849D54DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kilsotopia.Api", "Kilsotopia.Api\Kilsotopia.Api.csproj", "{9573251A-F135-46D5-9649-71B3F7FA6B9C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kilsotopia.Application", "Kilsotopia.Application\Kilsotopia.Application.csproj", "{1C12DDB4-50A5-495D-8DE6-0CF830B4ED6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kilsotopia.Domain", "Kilsotopia.Domain\Kilsotopia.Domain.csproj", "{729BE05A-0B34-4156-9DF1-824FFEAAEF51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kilsotopia.Infrastructure", "Kilsotopia.Infrastructure\Kilsotopia.Infrastructure.csproj", "{D625D7E1-CBDA-475C-9EA7-4FEBED709C3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9573251A-F135-46D5-9649-71B3F7FA6B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9573251A-F135-46D5-9649-71B3F7FA6B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9573251A-F135-46D5-9649-71B3F7FA6B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9573251A-F135-46D5-9649-71B3F7FA6B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C12DDB4-50A5-495D-8DE6-0CF830B4ED6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C12DDB4-50A5-495D-8DE6-0CF830B4ED6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C12DDB4-50A5-495D-8DE6-0CF830B4ED6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C12DDB4-50A5-495D-8DE6-0CF830B4ED6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{729BE05A-0B34-4156-9DF1-824FFEAAEF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{729BE05A-0B34-4156-9DF1-824FFEAAEF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{729BE05A-0B34-4156-9DF1-824FFEAAEF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{729BE05A-0B34-4156-9DF1-824FFEAAEF51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D625D7E1-CBDA-475C-9EA7-4FEBED709C3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D625D7E1-CBDA-475C-9EA7-4FEBED709C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D625D7E1-CBDA-475C-9EA7-4FEBED709C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D625D7E1-CBDA-475C-9EA7-4FEBED709C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9573251A-F135-46D5-9649-71B3F7FA6B9C} = {D70768B7-6799-450E-88C5-D093D4D6BBF4}
+		{1C12DDB4-50A5-495D-8DE6-0CF830B4ED6A} = {D70768B7-6799-450E-88C5-D093D4D6BBF4}
+		{729BE05A-0B34-4156-9DF1-824FFEAAEF51} = {D70768B7-6799-450E-88C5-D093D4D6BBF4}
+		{D625D7E1-CBDA-475C-9EA7-4FEBED709C3F} = {D70768B7-6799-450E-88C5-D093D4D6BBF4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FD42E8D-8F32-4DC5-A901-5A197E4EA1AE}
+	EndGlobalSection
+EndGlobal
