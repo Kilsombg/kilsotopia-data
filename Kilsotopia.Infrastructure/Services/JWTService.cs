@@ -1,4 +1,5 @@
 ﻿using Kilsotopia.Application.Common.Interfaces;
+using Kilsotopia.Infrastructure.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -9,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kilsotopia.Infrastructure.Identity
+namespace Kilsotopia.Infrastructure.Services
 {
     public class JWTService
     {

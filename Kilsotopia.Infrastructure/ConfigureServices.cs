@@ -1,6 +1,7 @@
 ﻿using Kilsotopia.Application.Common.Interfaces;
 using Kilsotopia.Infrastructure.Data;
 using Kilsotopia.Infrastructure.Identity;
+using Kilsotopia.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -27,6 +28,7 @@ namespace Kilsotopia.Infrastructure
             services.AddScoped<ApplicationDbContextInitialiser>();
 
             services.AddScoped<JWTService>();
+            services.AddScoped<EmailService>();
 
             services.AddIdentityCore<ApplicationUser>(options =>
             {
