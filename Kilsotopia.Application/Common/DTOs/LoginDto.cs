@@ -9,9 +9,9 @@ namespace Kilsotopia.Application.Common.DTOs
 {
     public class LoginDto
     {
-        [Required]
+        [Required(ErrorMessage = "Email is required.")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; } 
     }
 }

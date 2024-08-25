@@ -40,7 +40,7 @@ namespace Kilsotopia.Api.Controllers
 
             if (user == null)
             {
-                return Unauthorized("Invalid username or password");
+                return Unauthorized("Wrong email or password. Try again or create an account.");
             }
 
             if (user.EmailConfirmed == false)
@@ -51,18 +51,18 @@ namespace Kilsotopia.Api.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
             if (!result.Succeeded)
             {
-                return Unauthorized("Invalid username or password");
+                return Unauthorized("Wrong email or password. Try again or create an account.");
             }
 
             return CreateApplicationUserDto(user);
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto model)
         {
-             if (await CheckEmailExistsAsync(model.Email))
+                if (await CheckEmailExistsAsync(model.Email))
             {
-                return BadRequest($"An existing acount is using {model.Email}, email address. Please try with another email address.");
+                return BadRequest($"An existing acount is using {model.Email} email address. Please try with another email address.");
             }
 
             var userToAdd = new ApplicationUser
@@ -79,7 +79,7 @@ namespace Kilsotopia.Api.Controllers
                 return BadRequest(result.Errors);
             }
 
-            return Ok("Your account has been created, you can login");
+            return Ok(new JsonResult(new { title = "Account Created", message = "Your account has been created, you can login" }));
         } 
 
         #region Private Helper Methods
