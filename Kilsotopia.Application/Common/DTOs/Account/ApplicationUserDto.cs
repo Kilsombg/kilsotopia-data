@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kilsotopia.Application.Common.DTOs
+namespace Kilsotopia.Application.Common.DTOs.Account
 {
     public class ApplicationUserDto
     {

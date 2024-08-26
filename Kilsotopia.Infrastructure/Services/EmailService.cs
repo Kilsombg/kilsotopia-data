@@ -1,4 +1,4 @@
-﻿using Kilsotopia.Application.Common.DTOs;
+﻿using Kilsotopia.Application.Common.DTOs.Account;
 using Mailjet.Client;
 using Mailjet.Client.TransactionalEmails;
 using Microsoft.Extensions.Configuration;

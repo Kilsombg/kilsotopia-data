@@ -1,5 +1,4 @@
-﻿using Kilsotopia.Application.Common.DTOs;
-using Kilsotopia.Infrastructure.Identity;
+﻿using Kilsotopia.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +7,7 @@ using System.Security.Claims;
 using Kilsotopia.Infrastructure.Services;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
+using Kilsotopia.Application.Common.DTOs.Account;
 
 namespace Kilsotopia.Api.Controllers
 {
