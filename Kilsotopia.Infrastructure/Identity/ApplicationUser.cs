@@ -8,5 +8,6 @@ namespace Kilsotopia.Infrastructure.Identity
         [Required]
         public string FirstName { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+        public string Provider { get; set; }
     }
 }

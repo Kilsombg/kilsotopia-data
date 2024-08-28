@@ -8,6 +8,9 @@ using Kilsotopia.Infrastructure.Services;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using Kilsotopia.Application.Common.DTOs.Account;
+using Kilsotopia.Application.Common.DTOs;
+using Kilsotopia.Application.Common.Constants;
+using Google.Apis.Auth;
 
 namespace Kilsotopia.Api.Controllers
 {
@@ -66,6 +69,38 @@ namespace Kilsotopia.Api.Controllers
             return CreateApplicationUserDto(user);
         }
 
+        [HttpPost("login-with-third-party")]
+        public async Task<ActionResult<ApplicationUserDto>> LoginWithThirdParty(LoginWithExternalDto model)
+        {
+
+            if (model.Provider.Equals(SD.Google))
+            {
+                try
+                {
+                    if (!GoogleValidatedAsync(model.AccessToken, model.UserId).GetAwaiter().GetResult())
+                    {
+                        return Unauthorized("Unable to login with google");
+                    }
+                }
+                catch (Exception)
+                {
+                    return Unauthorized("Unable to login with google");
+                }
+            }
+            else
+            {
+                return BadRequest("Invalid provider");
+            }
+
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == model.UserId && x.Provider == model.Provider);
+            if (user == null)
+            {
+                return Unauthorized("Unable to find your account");
+            }
+
+            return CreateApplicationUserDto(user);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto model)
         {
@@ -102,6 +137,50 @@ namespace Kilsotopia.Api.Controllers
             }
         }
 
+        [HttpPost("register-with-third-party")]
+        public async Task<ActionResult<ApplicationUserDto>> RegisterWithThirdParty(RegisterWithExternalDto model)
+        {
+            if (model.Provider.Equals(SD.Google))
+            {
+                try
+                {
+                    if (!GoogleValidatedAsync(model.AccessToken, model.UserId).GetAwaiter().GetResult())
+                    {
+                        return Unauthorized("Unable to register with google");
+                    }
+                }
+                catch (Exception)
+                {
+                    return Unauthorized("Unable to register with google");
+                }
+            }
+            else
+            {
+                return BadRequest("Invalid provider");
+            }
+
+            var user = await _userManager.FindByNameAsync(model.UserId);
+            if (user != null)
+            {
+                return BadRequest(string.Format("You have an account already. Please login with your {0}", model.Provider));
+            }
+
+            var userToAdd = new ApplicationUser
+            {
+                FirstName = model.FirstName.ToLower(),
+                UserName = model.UserId,
+                Provider = model.Provider,
+            };
+
+            var result = await _userManager.CreateAsync(userToAdd);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return CreateApplicationUserDto(userToAdd);
+        }
+
         [HttpPut("confirm-email")]
         public async Task<IActionResult> ConfirmEmail(ConfirmEmailDto model)
         {
@@ -135,7 +214,7 @@ namespace Kilsotopia.Api.Controllers
             }
         }
 
-        [HttpPost("resend-email-confirmation-link/{email}")]
+        [HttpPost("resend-email-confirmation-linkresend-email-confirmation-link/{email}")]
         public async Task<IActionResult> ResendEmailConfirmationLink(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -285,6 +364,40 @@ namespace Kilsotopia.Api.Controllers
             var emailSend = new EmailSendDto(user.Email, "Forgot username or password", body);
 
             return await _emailService.SendEmailAsync(emailSend);
+        }
+
+        private async Task<bool> GoogleValidatedAsync(string accessToken, string userId)
+        {
+            var payload = await GoogleJsonWebSignature.ValidateAsync(accessToken);
+
+            if (!payload.Audience.Equals(_config["Google:ClientId"]))
+            {
+                return false;
+            }
+
+            if (!payload.Issuer.Equals("accounts.google.com") && !payload.Issuer.Equals("https://accounts.google.com"))
+            {
+                return false;
+            }
+
+            if (payload.ExpirationTimeSeconds == null)
+            {
+                return false;
+            }
+
+            DateTime now = DateTime.Now.ToUniversalTime();
+            DateTime expiration = DateTimeOffset.FromUnixTimeSeconds((long)payload.ExpirationTimeSeconds).DateTime;
+            if (now > expiration)
+            {
+                return false;
+            }
+
+            if (!payload.Subject.Equals(userId))
+            {
+                return false;
+            }
+
+            return true;
         }
         #endregion
     }
