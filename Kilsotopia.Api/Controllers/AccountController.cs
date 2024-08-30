@@ -214,7 +214,7 @@ namespace Kilsotopia.Api.Controllers
             }
         }
 
-        [HttpPost("resend-email-confirmation-linkresend-email-confirmation-link/{email}")]
+        [HttpPost("resend-email-confirmation-link/{email}")]
         public async Task<IActionResult> ResendEmailConfirmationLink(string email)
         {
             if (string.IsNullOrEmpty(email))
